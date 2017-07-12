@@ -1,4 +1,4 @@
-.card.bus-stop-content(ng-controller="busStopController")
+.card.bus-stop-content(ng-controller="busStopController" ng-class="getClassForCard('busSchedule')")
     table.card-table
         tr.card-table-row.departure(ng-repeat="departure in departures | filter: shouldShowDeparture | limitTo: 3")
             th.card-table-heading

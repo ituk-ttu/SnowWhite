@@ -1,4 +1,4 @@
-.card.events-content(ng-controller="eventsController")
+.card.events-content(ng-controller="eventsController" ng-class="getClassForCard('events')")
     table.card-table
         tr.card-table-row.event(ng-repeat="event in events")
             th.card-table-heading
