@@ -1,1 +1,3 @@
 .bus-stop-content(ng-controller="busStopController")
+    div(ng-repeat="departure in departures")
+        p {{departure.route}}

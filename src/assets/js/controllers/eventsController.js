@@ -3,9 +3,9 @@ app.controller("eventsController", ["$q", "$scope", "$http", "$interval",
 
         var self = this;
 
-        var API_KEY = "<insert API key here>";
+        var CALENDAR_ID = "sflecuo8b8t3rv7vn35rni8nfc@group.calendar.google.com";
         var UPDATE_DELAY = 3 * 1000;
-        var CALENDAR_ID = "<insert calendar ID here>";
+
         $scope.events = null;
 
         var updateEvents = function () {
@@ -16,7 +16,7 @@ app.controller("eventsController", ["$q", "$scope", "$http", "$interval",
                               orderBy: "startTime",
                               singleEvents: true,
                               timeMin: new Date().toISOString(),
-                              key: API_KEY
+                              key: GOOGLE_CALENDAR_API_KEY
                           }
                       }
             ).then(function(result) {
@@ -34,4 +34,4 @@ app.controller("eventsController", ["$q", "$scope", "$http", "$interval",
         $interval(updateEvents, UPDATE_DELAY);
         updateEvents();
 
-  }]);
+    }]);

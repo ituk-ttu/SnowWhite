@@ -1,0 +1,2 @@
+var GOOGLE_CALENDAR_API_KEY = "<insert API key>";
+var TRAFI_API_KEY = "<insert API key>";
