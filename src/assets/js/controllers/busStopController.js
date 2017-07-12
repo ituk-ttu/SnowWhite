@@ -3,11 +3,19 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
 
         var self = this;
 
-        var UPDATE_DELAY = 60 * 1000;
+        var UPDATE_DELAY = 15 * 60 * 1000;
         var STOP_ID = "tal_03504-1";
         var REGION_ID = "tallinn";
 
         $scope.departures = null;
+
+        $scope.shouldShowDeparture = function (departure) {
+            return departure.time.isAfter(moment());
+        };
+
+        $scope.underAMinuteRemaining = function (event) {
+            return event.time.diff(moment(), "minutes") < 1;
+        };
 
         var updateDepartures = function () {
             $http.get("http://api-ext.trafi.com/departures",
@@ -24,15 +32,14 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
                         return {
                             route: schedule.Name,
                             destination: schedule.Destination,
-                            minutesRemaining: departure.MinutesRemaining,
-                            timestamp: departure.TimeUtc
+                            time: moment.unix(departure.TimeUtc)
                         }
                     })
                 }).reduce(function(a, b) {
                     return a.concat(b);
                 }).sort(function(a, b) {
-                    return a.timestamp - b.timestamp;
-                }).slice(0, 3);
+                    return a.time.diff(b.time);
+                });
             });
         };
 

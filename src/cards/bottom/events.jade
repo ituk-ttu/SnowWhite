@@ -1,19 +1,21 @@
 .card.events-content(ng-controller="eventsController")
-    dl.event(ng-repeat="event in events")
-        dt
-            .event-day {{event.startTime | amDateFormat: 'DD'}}
-            .event-month {{event.startTime | amDateFormat: 'MMM'}}
-        dd
-            .event-time
-                span.event-time-notice(ng-if="isOngoing(event)") Praegu käib!
-                span.event-time-notice(ng-if="isOver(event)") Just lõppes!
-                span(ng-if="isSingleDayEvent(event)")
-                    | {{event.startTime | amDateFormat: 'HH:mm'}}
-                    | -
-                    | {{event.endTime | amDateFormat: 'HH:mm'}}
-                span(ng-if="!isSingleDayEvent(event)")
-                    | {{event.startTime | amDateFormat: 'DD MMM HH:mm'}}
-                    | -
-                    | {{event.endTime | amDateFormat: 'DD MMM HH:mm'}}
-            .event-title {{event.title}}
-            .event-location {{event.location}}
+    table.card-table
+        tr.card-table-row.event(ng-repeat="event in events")
+            th.card-table-heading
+                .event-day {{event.startTime | amDateFormat: 'DD'}}
+                .event-month {{event.startTime | amDateFormat: 'MMM'}}
+            td.card-table-content
+                .hack
+                    .event-time
+                        span.event-time-notice(ng-if="isOngoing(event)") Praegu käib!
+                        span.event-time-notice(ng-if="isOver(event)") Just lõppes!
+                        span(ng-if="isSingleDayEvent(event)")
+                            | {{event.startTime | amDateFormat: 'HH:mm'}}
+                            | -
+                            | {{event.endTime | amDateFormat: 'HH:mm'}}
+                        span(ng-if="!isSingleDayEvent(event)")
+                            | {{event.startTime | amDateFormat: 'DD MMM HH:mm'}}
+                            | -
+                            | {{event.endTime | amDateFormat: 'DD MMM HH:mm'}}
+                    .event-title {{event.title}}
+                    .event-location {{event.location}}

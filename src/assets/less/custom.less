@@ -50,25 +50,33 @@ body, html, .content-container {
     font-size: 3em;
 }
 .card {
-    dl {
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        dt {
-            text-align: center;
-            border-right: 2px solid white;
-            padding-right: 30px;
-        }
-        dd {
+    table.card-table {
+        border-collapse: separate;
+        border-spacing: 0 20px;
+        tr.card-table-row {
             overflow: hidden;
-            text-overflow: ellipsis;
-            margin-left: 30px;
+            th.card-table-heading {
+                text-align: center;
+                border-right: 2px solid white;
+                padding-right: 30px;
+            }
+            td.card-table-content {
+                position: relative;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                .hack {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: 30px;
+                }
+            }
         }
     }
 }
 .event {
-    dt {
+    th {
         .event-day {
             line-height: 0.8;
             font-size: 3.3em;
@@ -80,7 +88,7 @@ body, html, .content-container {
             text-transform: uppercase;
         }
     }
-    dd {
+    td {
         .event-time-notice {
             font-weight: bold;
         }
@@ -89,6 +97,14 @@ body, html, .content-container {
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 2em;
+        }
+    }
+}
+.departure {
+    th {
+        .departure-route {
+            font-size: 3.3em;
+            font-weight: bold;
         }
     }
 }

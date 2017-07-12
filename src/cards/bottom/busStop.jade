@@ -1,3 +1,16 @@
-.bus-stop-content(ng-controller="busStopController")
-    div(ng-repeat="departure in departures")
-        p {{departure.route}}
+.card.bus-stop-content(ng-controller="busStopController")
+    table.card-table
+        tr.card-table-row.departure(ng-repeat="departure in departures | filter: shouldShowDeparture | limitTo: 3")
+            th.card-table-heading
+                .departure-route {{departure.route}}
+            td.card-table-content
+                .hack
+                    .departure-time(ng-if="!underAMinuteRemaining(departure)")
+                        |  Väljub
+                        b  {{departure.time | amDifference : null : "minutes"}} minuti
+                        |  pärast
+                    .departure-time(ng-if="underAMinuteRemaining(departure)")
+                        |  Väljub
+                        b  vähem kui minuti
+                        |  pärast
+                    .departure-destination {{departure.destination}}
