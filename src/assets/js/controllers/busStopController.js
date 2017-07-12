@@ -3,13 +3,13 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
 
         var self = this;
 
-        var UPDATE_DELAY = 3 * 1000;
+        var UPDATE_DELAY = 60 * 1000;
         var STOP_ID = "tal_03504-1";
         var REGION_ID = "tallinn";
 
         $scope.departures = null;
 
-        var updateEvents = function () {
+        var updateDepartures = function () {
             $http.get("http://api-ext.trafi.com/departures",
                       {
                           params: {
@@ -36,7 +36,7 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
             });
         };
 
-        $interval(updateEvents, UPDATE_DELAY);
-        updateEvents();
+        $interval(updateDepartures, UPDATE_DELAY);
+        updateDepartures();
 
     }]);

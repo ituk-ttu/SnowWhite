@@ -23,3 +23,46 @@ body, html, .content-container {
     box-sizing: border-box;
     max-height: 215px;
 }
+.card {
+    dl {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        dt {
+            text-align: center;
+            border-right: 2px solid white;
+            padding-right: 30px;
+        }
+        dd {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: 30px;
+        }
+    }
+}
+.event {
+    dt {
+        .event-day {
+            line-height: 0.8;
+            font-size: 3.3em;
+            font-weight: bold;
+        }
+        .event-month {
+            line-height: 1.2;
+            font-size: 2.1em;
+            text-transform: uppercase;
+        }
+    }
+    dd {
+        .event-time-notice {
+            font-weight: bold;
+        }
+        .event-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 2em;
+        }
+    }
+}
