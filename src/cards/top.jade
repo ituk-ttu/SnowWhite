@@ -1,1 +1,5 @@
 .top-content(ng-controller="topController")
+    .time-and-date
+        p.time {{clock | date:"HH:mm"}}
+        p.date {{clock | date:"dd MMM yy"}}
+    .weather
