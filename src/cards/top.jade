@@ -1,7 +1,7 @@
 .top-content(ng-controller="topController")
     .time-and-date
         p.time {{clock | date:"HH:mm"}}
-        p.date {{clock | date:"dd MMM yy"}}
+        p.date {{clock | date:"dd MMMM yy"}}
     .weather
-        p.sky {{weather.sky}}
-        p.temperature {{weather.temperature}}
+        img.sky(ng-src="assets/img/climacons/{{weather.icon}}.svg")
+        p.temperature {{weather.temperature}}°C
