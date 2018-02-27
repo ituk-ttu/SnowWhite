@@ -30,7 +30,7 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
                 $scope.departures = result.data.Schedules.map(function (schedule) {
                     return schedule.Departures.map(function (departure) {
                         return {
-                            route: schedule.Name,
+                            route: schedule.Name.split(" ")[0],
                             destination: schedule.Destination,
                             time: moment.unix(departure.TimeUtc)
                         }
