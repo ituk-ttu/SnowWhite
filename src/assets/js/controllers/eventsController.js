@@ -4,7 +4,7 @@ app.controller("eventsController", ["$q", "$scope", "$http", "$interval",
         var self = this;
 
         var CALENDAR_ID = "g86lrthmecu19gh7arvcj76f08@group.calendar.google.com";
-        var UPDATE_DELAY = 60 * 60 * 1000;
+        var UPDATE_DELAY = 10 * 60 * 1000;
 
         $scope.events = null;
 
