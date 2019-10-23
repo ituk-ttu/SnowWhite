@@ -18,31 +18,19 @@ app.controller("busStopController", ["$q", "$scope", "$http", "$interval",
         };
 
         var updateDepartures = function () {
-            $http.get("http://api-ext.trafi.com/departures",
-                      {
-                          params: {
-                              stop_id: STOP_ID,
-                              region: REGION_ID,
-                              api_key: TRAFI_API_KEY
-                          }
-                      }
-            ).then(function(result) {
-                $scope.departures = result.data.Schedules.map(function (schedule) {
-                    return schedule.Departures.map(function (departure) {
-                        return {
-                            route: schedule.Name.split(" ")[0],
-                            destination: schedule.Destination,
-                            time: moment.unix(departure.TimeUtc)
-                        }
-                    })
-                }).reduce(function(a, b) {
-                    return a.concat(b);
-                }).sort(function(a, b) {
-                    return a.time.diff(b.time);
-                });
-            });
+            $http.get("https://transport.tallinn.ee/siri-stop-departures.php?stopid=926&time="
+            ).then(function (result) {
+                let today = new Date(new Date().setHours(0, 0, 0, 0));
+                $scope.departures = result.data.split("\n").slice(2).map(function (schedule) {
+                    return {
+                        route: schedule.split(",")[1],
+                        destination: schedule.split(",")[4],
+                        time: moment(today).add(schedule.split(",")[2], 'seconds')
+                    }
+                })
+                console.log($scope.departures)
+            })
         };
-
         $interval(updateDepartures, UPDATE_DELAY);
         updateDepartures();
 
