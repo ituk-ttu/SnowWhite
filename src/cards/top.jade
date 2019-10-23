@@ -4,4 +4,4 @@
         p.date {{clock | date:"dd MMMM yy"}}
     .weather
         img.sky(ng-src="assets/img/climacons/{{weather.icon}}.svg")
-        p.temperature {{weather.temperature}}°C
+        p.temperature {{weather.temperature | number:0 }}°C
